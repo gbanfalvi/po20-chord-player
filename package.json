@@ -1,0 +1,18 @@
+{
+  "name": "po20-chords",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tonejs/piano": "^0.2.1",
+    "parcel-bundler": "^1.12.4",
+    "tone": "^14.7.77",
+    "webmidi": "^2.5.1"
+  }
+}
