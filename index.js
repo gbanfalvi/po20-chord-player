@@ -1,6 +1,23 @@
 
 import { Piano } from '@tonejs/piano'
 
+// Utility
+
+function isIos() {
+    return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+    ].includes(navigator.platform)
+        // iPad on iOS 13 detection
+        || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
+const useTouch = isIos()
+
 // Set up piano component
 
 const piano = new Piano({
@@ -35,10 +52,12 @@ const chordSpecs = [
     { id: 'chord-D', notes: ['D4', 'F#4', 'A4'], key: 'v' }
 ]
 
+// IDs for chord specs being pressed.
 let downKeys = []
 
 piano.load().then(() => {
 
+    // Press keys a chord spec. Ignore if already being played.
     function keyDown(chordSpec) {
         if (downKeys.includes(chordSpec.id)) {
             return
@@ -50,6 +69,7 @@ piano.load().then(() => {
         }
     }
 
+    // Release keys for a chord spec.
     function keyUp(chordSpec) {
         downKeys = downKeys.filter(chordId => { chordId == chordSpec.id })
         for (let note of chordSpec.notes) {
@@ -57,18 +77,32 @@ piano.load().then(() => {
         }
     }
 
+    // Add listeners to all the buttons.
     for (let chordSpec of chordSpecs) {
         let button = document.getElementById(chordSpec.id)
 
-        button.addEventListener('mousedown', () => {
-            keyDown(chordSpec)
-        })
+        if (useTouch) {
 
-        button.addEventListener('mouseup', () => {
-            keyUp(chordSpec)
-        })
+            button.addEventListener('touchstart', () => {
+                keyDown(chordSpec)
+            })
+    
+            button.addEventListener('touchend', () => {
+                keyUp(chordSpec)
+            })
+        } else {
+            button.addEventListener('mousedown', () => {
+                keyDown(chordSpec)
+            })
+    
+            button.addEventListener('mouseup', () => {
+                keyUp(chordSpec)
+            })
+        }
+
     }
 
+    // Add key down listener for keyboard shortcuts.
     document.addEventListener('keydown', event => {
         const chordSpec = chordSpecs.filter(cs => { return event.key == cs.key })[0]
 
@@ -79,6 +113,7 @@ piano.load().then(() => {
         }
     })
 
+    // Add key up listener for keybord shortcuts.
     document.addEventListener('keyup', event => {
         const chordSpec = chordSpecs.filter(cs => { return event.key == cs.key })[0]
 
