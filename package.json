@@ -1,7 +1,7 @@
 {
   "name": "po20-chords",
   "version": "1.0.0",
-  "description": "A tiny gadget to play the chords Teenage Engineering's PO-20 can play.",
+  "description": "A tiny gadget to play Teenage Engineering's PO-20's chords in your browser.",
   "main": "index.js",
   "scripts": {
     "watch": "parcel index.html",
