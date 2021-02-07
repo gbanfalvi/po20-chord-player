@@ -1,13 +1,13 @@
 {
   "name": "po20-chords",
   "version": "1.0.0",
-  "description": "",
+  "description": "A tiny gadget to play the chords Teenage Engineering's PO-20 can play.",
   "main": "index.js",
   "scripts": {
     "watch": "parcel index.html",
     "build": "parcel build index.html"
   },
-  "author": "",
+  "author": "Gabriel Banfalvi",
   "license": "ISC",
   "dependencies": {
     "@tonejs/piano": "^0.2.1",
