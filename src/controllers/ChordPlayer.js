@@ -2,6 +2,7 @@
 
 import { Piano } from '@tonejs/piano'
 import { ChordSpec } from '../models/ChordSpec'
+import { ScreenHandler } from './ScreenHandler'
 
 /**
  * Plays chords with `@tonejs/piano`.
@@ -45,6 +46,8 @@ export class ChordPlayer {
         for (const newNote of newNotes) {
             this._piano.keyDown({note: newNote})
         }
+
+        ScreenHandler.Shared.setChordSpec(chordSpec)
 
         this._downChords.push(chordSpec)
     }

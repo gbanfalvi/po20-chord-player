@@ -21,7 +21,7 @@ export class KeyboardHandler {
         })
 
         document.addEventListener('keyup', event => {
-            const chordSpec = chordSpecs.filter(cs => {return event.key == cs.keyboardKey})[0]
+            const chordSpec = chordSpecs.filter(cs => {return event.key.toLowerCase() == cs.keyboardKey.toLowerCase()})[0]
 
             if (chordSpec != null) {
                 ChordPlayer.Shared.chordUp(chordSpec)   

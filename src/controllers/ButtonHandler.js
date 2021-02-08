@@ -23,29 +23,39 @@ export class ButtonHandler {
      * @param {ChordSpec} chordSpec 
      */
     _setupButton(chordSpec) {
+
         const keyContainer = document.getElementById(`chord-${chordSpec.buttonNo}`)
 
-        const numberElem = ElemFactory.create('div', null, ['key-number'])
-        numberElem.innerText = chordSpec.buttonNo
-
-        const buttonElem = ElemFactory.create('div', null, ['key-button'])
-        buttonElem.innerText = chordSpec.keyboardKey
-
-        const chordElem = ElemFactory.create('div', null, ['key-chord'])
+        // Button top
+        // const notesElem = ElemFactory.create('div', null, ['button-notes'])
+        // notesElem.innerText = chordSpec.chordNotes.join(', ')
+        
+        const chordElem = ElemFactory.create('div', null, ['button-chord'])
         chordElem.innerText = chordSpec.chord
 
-        const notesElem = ElemFactory.create('div', null, ['key-notes'])
-        notesElem.innerText = chordSpec.chordNotes.join(', ')
+        const buttonTopElem = ElemFactory.create('div', null, ['button-top'])
+        // buttonTopElem.appendChild(notesElem)
+        buttonTopElem.appendChild(chordElem)
 
-        keyContainer.appendChild(numberElem)
-        keyContainer.appendChild(buttonElem)
-        keyContainer.appendChild(chordElem)
-        keyContainer.appendChild(notesElem)
+        // Button bottom
+        const numberElem = ElemFactory.create('div', null, ['button-number'])
+        numberElem.innerText = chordSpec.buttonNo
+        
+        const keyElem = ElemFactory.create('div', null, ['button-key'])
+        keyElem.innerText = chordSpec.keyboardKey
+        
+        const buttonBottomElem = ElemFactory.create('div', null, ['button-bottom'])
+        buttonBottomElem.appendChild(numberElem)
+        buttonBottomElem.appendChild(keyElem)
 
+        // Put everything together
+        keyContainer.appendChild(buttonTopElem)
+        keyContainer.appendChild(buttonBottomElem)
+
+        // Touch & mouse events
         const useTouch = OsDetect.isIos() 
 
         if (useTouch) {
-
             keyContainer.addEventListener('touchstart', ()=> {
                 ChordPlayer.Shared.chordDown(chordSpec)
             })
@@ -55,7 +65,6 @@ export class ButtonHandler {
             })
         
         } else {
-
             keyContainer.addEventListener('mousedown', ()=> {
                 ChordPlayer.Shared.chordDown(chordSpec)
             })
