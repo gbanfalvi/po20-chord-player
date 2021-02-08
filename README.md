@@ -27,3 +27,4 @@ npm run build
 
 - [Atkinson Hyperlegible Font](https://brailleinstitute.org/freefont)
 - [@tonejs/Piano](https://github.com/tambien/Piano) 
+- [This post by u/TheBanjoPrince](https://www.reddit.com/r/pocketoperators/comments/8ctdzv/po20_scale_guide/)
