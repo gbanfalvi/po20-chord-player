@@ -4,8 +4,8 @@
   "description": "A tiny gadget to play Teenage Engineering's PO-20's chords in your browser.",
   "main": "index.js",
   "scripts": {
-    "watch": "parcel index.html",
-    "build": "parcel build index.html"
+    "watch": "parcel ./public/index.html",
+    "build": "parcel build ./public/index.html --public-url '.'"
   },
   "author": "Gabriel Banfalvi",
   "license": "ISC",

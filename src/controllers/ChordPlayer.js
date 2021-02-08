@@ -42,7 +42,6 @@ export class ChordPlayer {
         }
 
         const newNotes = this._missingNotes(chordSpec)
-        console.log(`Adding ${newNotes}`)
         for (const newNote of newNotes) {
             this._piano.keyDown({note: newNote})
         }
@@ -60,8 +59,6 @@ export class ChordPlayer {
         }
 
         const removedNotes = this._spareNotes(chordSpec)
-        console.log(`Removing ${removedNotes}`)
-
         for (const removedNote of removedNotes) {
             this._piano.keyUp({note: removedNote})
         }
@@ -77,9 +74,7 @@ export class ChordPlayer {
      */
     _missingNotes(chordSpec) {
         const activeNotes = this._downChords.flatMap(c => {return c.chordNotes})
-        const newNotes = chordSpec.chordNotes.filter(n => { return !activeNotes.includes(n)})
-        console.log(activeNotes, newNotes)
-        return newNotes
+        return newNotes = chordSpec.chordNotes.filter(n => { return !activeNotes.includes(n)})
     }
 
     /**
