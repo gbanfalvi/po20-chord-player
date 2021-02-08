@@ -74,7 +74,7 @@ export class ChordPlayer {
      */
     _missingNotes(chordSpec) {
         const activeNotes = this._downChords.flatMap(c => {return c.chordNotes})
-        return newNotes = chordSpec.chordNotes.filter(n => { return !activeNotes.includes(n)})
+        return chordSpec.chordNotes.filter(n => { return !activeNotes.includes(n)})
     }
 
     /**
