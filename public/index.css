@@ -75,6 +75,8 @@ body {
     border-radius: 12px;
     background: var(--purple-gadget-background);
     box-shadow: 10px 10px 1px 0px var(--purple-gadget-shadow);
+
+    overflow: scroll;
 }
 
 @media screen and (max-width: 460px) {
